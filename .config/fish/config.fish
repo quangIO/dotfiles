@@ -1,4 +1,6 @@
-kitty + complete setup fish | source
+starship init fish | source
+
+# kitty + complete setup fish | source
 
 # opam configuration
 # source /home/quangio/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

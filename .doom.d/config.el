@@ -18,8 +18,10 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code Medium" :size 14))
-;;(setq doom-font (font-spec :family "Cascadia Code" :size 14))
+;;(setq doom-font (font-spec :family "Fira Code Medium" :size 14))
+(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 13))
+;; (setq doom-font (font-spec :family "Iosevka" :size 14))
+;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
@@ -76,48 +78,48 @@
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 
-(use-package composite
-  :defer t
-  :init
-  (defvar composition-ligature-table (make-char-table nil))
-  :hook
-  (((prog-mode conf-mode nxml-mode markdown-mode help-mode)
-    . (lambda () (setq-local composition-function-table composition-ligature-table))))
-  :config
-  ;; support ligatures, some toned down to prevent hang
-  (when (version<= "27.0" emacs-version)
-    (let ((alist
-           '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
-             (35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
-             (36 . ".\\(?:\\(>\\)>?\\)")
-             (37 . ".\\(?:\\(%\\)%?\\)")
-             (38 . ".\\(?:\\(&\\)&?\\)")
-             (42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
-             ;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
-             (43 . ".\\(?:\\([>]\\)>?\\)")
-             ;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
-             (45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
-             ;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
-             (46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
-             (47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
-             ;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
-             (48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
-             (58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
-             (59 . ".\\(?:\\(;\\);?\\)")
-             (60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
-             (61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
-             (62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
-             (63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
-             (91 . ".\\(?:\\(|\\)[]|]?\\)")
-             ;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
-             (94 . ".\\(?:\\(=\\)=?\\)")
-             (95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
-             (119 . ".\\(?:\\(ww\\)w?\\)")
-             (123 . ".\\(?:\\(|\\)[|}]?\\)")
-             (124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
-             (126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
-      (dolist (char-regexp alist)
-        (set-char-table-range composition-ligature-table (car char-regexp)
-                              `([,(cdr char-regexp) 0 font-shape-gstring]))))
-    (set-char-table-parent composition-ligature-table composition-function-table))
-  )
+;; (use-package composite
+;;   :defer t
+;;   :init
+;;   (defvar composition-ligature-table (make-char-table nil))
+;;   :hook
+;;   (((prog-mode conf-mode nxml-mode markdown-mode help-mode)
+;;     . (lambda () (setq-local composition-function-table composition-ligature-table))))
+;;   :config
+;;   ;; support ligatures, some toned down to prevent hang
+;;   (when (version<= "27.0" emacs-version)
+;;     (let ((alist
+;;            '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
+;;              (35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
+;;              (36 . ".\\(?:\\(>\\)>?\\)")
+;;              (37 . ".\\(?:\\(%\\)%?\\)")
+;;              (38 . ".\\(?:\\(&\\)&?\\)")
+;;              (42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
+;;              ;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
+;;              (43 . ".\\(?:\\([>]\\)>?\\)")
+;;              ;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
+;;              (45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
+;;              ;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
+;;              (46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
+;;              (47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
+;;              ;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
+;;              (48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
+;;              (58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
+;;              (59 . ".\\(?:\\(;\\);?\\)")
+;;              (60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
+;;              (61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
+;;              (62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
+;;              (63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
+;;              (91 . ".\\(?:\\(|\\)[]|]?\\)")
+;;              ;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
+;;              (94 . ".\\(?:\\(=\\)=?\\)")
+;;              (95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
+;;              (119 . ".\\(?:\\(ww\\)w?\\)")
+;;              (123 . ".\\(?:\\(|\\)[|}]?\\)")
+;;              (124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
+;;              (126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
+;;       (dolist (char-regexp alist)
+;;         (set-char-table-range composition-ligature-table (car char-regexp)
+;;                               `([,(cdr char-regexp) 0 font-shape-gstring]))))
+;;     (set-char-table-parent composition-ligature-table composition-function-table))
+;;   )

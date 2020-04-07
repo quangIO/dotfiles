@@ -18,8 +18,11 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;;(setq doom-font (font-spec :family "Fira Code Medium" :size 14))
-(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 13))
+;; (setq doom-font (font-spec :family "Fira Code Medium" :size 14))
+(setq evil-snipe-scope 'visible)
+(setq evil-snipe-repeat-scope 'whole-visible)
+(setq evil-snipe-spillover-scope 'buffer)
+(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 14))
 ;; (setq doom-font (font-spec :family "Iosevka" :size 14))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -78,7 +81,7 @@
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 
-;; (use-package composite
+;; (use-package! composite
 ;;   :defer t
 ;;   :init
 ;;   (defvar composition-ligature-table (make-char-table nil))

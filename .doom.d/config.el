@@ -6,7 +6,7 @@
 
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
-(setq user-full-name "Luong The Minh Quang"
+(setq user-full-name "Lương Thế Minh Quang"
       user-mail-address "oss@devel.faith")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
@@ -22,8 +22,7 @@
 (setq evil-snipe-scope 'visible)
 (setq evil-snipe-repeat-scope 'whole-visible)
 (setq evil-snipe-spillover-scope 'buffer)
-(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 14))
-;; (setq doom-font (font-spec :family "Iosevka" :size 14))
+(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 13))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -39,14 +38,16 @@
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type t)
-(use-package lsp-haskell
-;;  :ensure t
+(use-package! lsp-haskell
+  ;;  :ensure t
   :config
   (setq lsp-haskell-process-path-hie "haskell-language-server")
   (setq lsp-haskell-process-args-hie '())
- ;; Comment/uncomment this line to see interactions between lsp client/server.
- ;;(setq lsp-log-io t)
-)
+  ;; Comment/uncomment this line to see interactions between lsp client/server.
+  ;;(setq lsp-log-io t)
+  )
+
+(setq rustic-lsp-server 'rust-analyzer)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one

@@ -22,7 +22,7 @@
 (setq evil-snipe-scope 'visible)
 (setq evil-snipe-repeat-scope 'whole-visible)
 (setq evil-snipe-spillover-scope 'buffer)
-(setq doom-font (font-spec :family "Iosevka Heavy Extended" :size 13))
+(setq doom-font (font-spec :family "Iosevka Semibold" :size 13))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -38,6 +38,9 @@
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type t)
+(setq lsp-rust-analyzer-server-display-inlay-hints t)
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
 (use-package! lsp-haskell
   ;;  :ensure t
   :config
@@ -48,6 +51,8 @@
   )
 
 (setq rustic-lsp-server 'rust-analyzer)
+(after! lsp-rust
+  (setq lsp-rust-server 'rust-analyzer))
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one

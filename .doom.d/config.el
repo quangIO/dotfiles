@@ -22,7 +22,13 @@
 (setq evil-snipe-scope 'visible)
 (setq evil-snipe-repeat-scope 'whole-visible)
 (setq evil-snipe-spillover-scope 'buffer)
-(setq doom-font (font-spec :family "Iosevka Semibold" :size 13))
+;; (setq doom-font (font-spec :family "Iosevka Semibold" :size 13))
+
+(if (equal (display-pixel-width) 3840)
+    (setq doom-font (font-spec :family "Iosevka Semibold" :size 13)
+          doom-big-font (font-spec :family "Iosevka Semibold" :size 24))
+  (setq doom-font (font-spec :family "Iosevka Semibold" :size 13)
+        doom-big-font (font-spec :family "Iosevka Semibold" :size 24)))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -41,14 +47,15 @@
 (setq lsp-rust-analyzer-server-display-inlay-hints t)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
-(use-package! lsp-haskell
-  ;;  :ensure t
+
+(use-package! atomic-chrome
+  :after-call focus-out-hook
   :config
-  (setq lsp-haskell-process-path-hie "haskell-language-server")
-  (setq lsp-haskell-process-args-hie '())
-  ;; Comment/uncomment this line to see interactions between lsp client/server.
-  ;;(setq lsp-log-io t)
-  )
+  (setq atomic-chrome-default-major-mode 'c++-mode
+        atomic-chrome-buffer-open-style 'full)
+  (atomic-chrome-start-server))
+(use-package! pkgbuild-mode
+  :mode "\\PKGBUILD")
 
 (setq rustic-lsp-server 'rust-analyzer)
 (after! lsp-rust
@@ -86,3 +93,16 @@
 ;;                         (frame-parameter nil 'fullscreen))))
 
 ;; (add-hook 'kill-emacs-hook #'save-frame-dimensions)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+  '(custom-safe-themes
+     '("a92e9da0fab90cbec4af4a2035602208cebf3d071ea547157b2bfc5d9bd4d48d" "d71aabbbd692b54b6263bfe016607f93553ea214bc1435d17de98894a5c3a086" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
